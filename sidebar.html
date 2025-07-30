@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Unscramble!</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+  <div class="game-container">
+    <h2>🧠 Unscramble!</h2>
+    <div id="scrambled-word"></div>
+    <input type="text" id="guess" placeholder="Your guess" />
+    <button id="check-btn">Check</button>
+    <div id="feedback"></div>
+    <button id="next-btn">Next Word</button>
+    <p id="score">Score: 0</p>
+  </div>
+  <!--<script src="wordlist.js"></script>-->
+  <script src="sidebar.js"></script>
+</body>
+</html>
+<script>
+  let currentWord = '';
+  let score = 0;
+
+  function getRandomWord() {
+    const words = wordList; // Assuming wordList is defined in wordlist.js
+    return words[Math.floor(Math.random() * words.length)];
+  }
+
+  function scrambleWord(word) {
+    return word.split('').sort(() => Math.random() - 0.5).join('');
+  }
+
+  function displayScrambledWord() {
+    currentWord = getRandomWord();
+    const scrambled = scrambleWord(currentWord);
+    document.getElementById('scrambled-word').innerText = scrambled;
+  }
+
+  function checkAnswer() {
+    const guess = document.getElementById('guess').value.trim();
+    if (guess.toLowerCase() === currentWord.toLowerCase()) {
+      score++;
+      document.getElementById('feedback').innerText = 'Correct!';
+    } else {
+      document.getElementById('feedback').innerText = `Wrong! The correct word was "${currentWord}".`;
+    }
+    document.getElementById('score').innerText = `Score: ${score}`;
+    document.getElementById('guess').value = '';
+  }
+
+  function nextWord() {
+    displayScrambledWord();
+    document.getElementById('feedback').innerText = '';
+  }
+
+  // Initialize the game
+  displayScrambledWord();
