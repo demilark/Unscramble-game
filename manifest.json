@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Unscramble words for fun!",
   "action": {
-    "default_popup": "sidebar.html",
+    "default_popup": "popup.html",
     "default_icon": {
       "16": "icon16.png",
       "48": "icon48.png",
