@@ -8,3 +8,4 @@
 - Instant feedback on correct/incorrect answers
 - Clean, responsive popup interface
 - Fetches from an online word list (no manual entry needed)
+- Words available offline too!
